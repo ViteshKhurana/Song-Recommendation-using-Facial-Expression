@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>First Page</title>
+</head>
+<body>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href="{% static 'facialExpression/css/style.css' %}">
+  </head>
+  <body style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url({% static 'facialExpression/images/2.jpg'%})">
+    <header>
+		<div class = "title">
+			<h1>Music Recomendation Based On Facial Expression</h1>
+		</div>
+		<div>
+		</div>
+		<div>
+			<form action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+				<div class ="upload">
+					<h3>Select image to upload:</h3>
+                    {{form.as_p}}
+					<input type="submit" value="Upload Image" name="submit">
+				</div>
+			</form>
+		</div>
+        <div>
+        {% if obj %}
+            <div>
+			    <img src='{{obj.image.url}}' alt="image" width="200" height="200">
+		    </div>
+            <div class= "expression">
+			    <h2>Expression: <a>{{facialExpression}}</a></h2>
+		    </div>
+        {% endif %}
+        <div class="boxContainer">
+        <div class="box">
+                <a href="./result_page" target="blank">Continue</a>
+        </div>
+        </div>
+        </div>
+    </header>
+	</body>
+</html>
